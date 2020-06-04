@@ -249,11 +249,31 @@ img.img-fluid {
 	display:inline-block;
 }
 
-/* IE & Mozilla fix */
-div.row>div img.img-fluid {
+/* New Section*/
+#news img.img-fluid {
 	width: 100%;
+	height: 150px;
+	object-fit: cover;
+	object-position: center center;
+
 }
 
+/* IE & Mozilla fix */
+#work img.img-fluid {
+	width: 100%;
+	height: 250px;
+	object-fit: cover;
+	object-position: center center;
+
+}
+
+/* Clients*/
+#clients img.img-fluid {
+	width: 100%;
+	height: 100px;
+	object-fit: contain;
+	object-position: center center;
+}
 
 .page-header {
     padding-bottom: 9px;
