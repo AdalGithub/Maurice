@@ -226,191 +226,90 @@
 			
 
 			<!-- -->
+	
 			<section>
-				<div class="container">
-					
-					<div class="row">
-
-						<!-- FORM -->
-						<div class="col-md-9">
-							<h1 style="text-align: center;"> Submission Form </h1>
-
-							<h3>First, select the type of service in the list below </h3>
-
-							
-							<!--
-								MESSAGES
-								
-									How it works?
-									The form data is posted to php/contact.php where the fields are verified!
-									php.contact.php will redirect back here and will add a hash to the end of the URL:
-										#alert_success 		= email sent
-										#alert_failed		= email not sent - internal server error (404 error or SMTP problem)
-										#alert_mandatory	= email not sent - required fields empty
-										Hashes are handled by assets/js/contact.js
-
-									Form data: required to be an array. Example:
-										contact[email][required]  WHERE: [email] = field name, [required] = only if this field is required (PHP will check this)
-										Also, add `required` to input fields if is a mandatory field. 
-										Example: <input required type="email" value="" class="form-control" name="contact[email][required]">
-
-									PLEASE NOTE: IF YOU WANT TO ADD OR REMOVE FIELDS (EXCEPT CAPTCHA), JUST EDIT THE HTML CODE, NO NEED TO EDIT php/contact.php or javascript
-												 ALL FIELDS ARE DETECTED DINAMICALY BY THE PHP
-
-									WARNING! Do not change the `email` and `name`!
-												contact[name][required] 	- should stay as it is because PHP is using it for AddReplyTo (phpmailer)
-												contact[email][required] 	- should stay as it is because PHP is using it for AddReplyTo (phpmailer)
-							-->
-
-							<!-- Alert Success -->
-							<div id="alert_success" class="alert alert-success mb-30">
-								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								<strong>Thank You!</strong> Your message successfully sent!
-							</div><!-- /Alert Success -->
-
-
-							<!-- Alert Failed -->
-							<div id="alert_failed" class="alert alert-danger mb-30">
-								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								<strong>[SMTP] Error!</strong> Internal server error!
-							</div><!-- /Alert Failed -->
-
-
-							<!-- Alert Mandatory -->
-							<div id="alert_mandatory" class="alert alert-danger mb-30">
-								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								<strong>Sorry!</strong> You need to complete all mandatory (*) fields!
-							</div><!-- /Alert Mandatory -->
-
-
-							<form action="php/contact.php" method="post" enctype="multipart/form-data">
-								<fieldset>
-									<div class="row">
-										
-										<div class="col-md-4">
-											<label for="contact_type_of_service">Type of Service</label>
-											<select class="form-control pointer" name="contact[Type of Service]">
-												<option value="">--- Select ---</option>
-												<option value="Marketing">Residential</option>
-												<option value="Webdesign">Corporate</option>
-												<option value="Architecture">Commercial</option>
-												<option value="Hybride">Hybride</option>
-											</select>
-										</div>
-																		
-									
-									
-								
-									</div>
-										<div id="myDIV_1" style="display: none;"> Enter the number of the  apartments <br>
-											<input id="NberApartments" type="number" name value oninput="call()" onkey="Call">
-									</div>
-									
-									<div>
-										<div id="myDIV_2" style="display: none;"> Enter the number of the floors <br>
-										<input id="NberFloors" type="number" name value oninput="call()" onkey="Call">
-										</div>
-									</div>
-
-									<div>
-										<div id="myDIV_3" style="display: none;"> Enter the number of the basements <br>
-										<input id="NberBasements" type="number" name value oninput="call()" onkey="Call">
-										</div>
-									</div>
-
-									<div>
-										<div id="myDIV_4" style="display: none;"> Enter the number of the distinct businesses <br>
-										<input id="NberBusiness" type="number" name value oninput="call()" onkey="Call">
-										</div>
-									</div>
-
-									<div>
-										<div id="myDIV_5" style="display: none;"> Enter the number of the parking available <br>
-										<input id="NberParking" type="number" name value oninput="call()" onkey="Call">
-										</div>
-									</div>
-
-									<div>
-										<div id="myDIV_6" style="display: none;"> Enter the number of lift cages to deploy <br>
-										<input id="NberCage" type="number" name value oninput="call()" onkey="Call">
-										</div>
-									</div>
-
-									<div>
-										<div id="myDIV_7" style="display: none;"> Enter the number of separate rental compagnies <br>
-										<input id="NberRentalCompagnies" type="number" name value oninput="call()" onkey="Call">
-										</div>
-									</div>
-									<div>
-										<div id="myDIV_8" style="display: none;"> Enter the number of occupants per floor <br>
-										<input id="NberMaxPersonByfloor" type="number" name value oninput="call()" onkey="Call">
-										</div>
-									</div>
-
-									<div>
-										<div id="myDIV_9" style="display: none;"> Enter the number of hours of activity of the building <br>
-										<input id="NberHoursActivity" type="number" name value oninput="call()" onkey="Call">
-										</div>
-									</div>
-
-									<div>
-										<div id="myDIV_10" style="display: none;"> Enter the number of elevators you need <br>
-										<input id="ResultElevator" type="number" name value oninput="call()" onkey="Call">
-										</div>
-									</div>
-
-									
-									<p> <br>
-										<strong> Second, chose the quality of the elevator below </strong>
-									</p>
-									<p> 
-										<input id="PriceUnitStandard" type="radio" name="services" value="standard" onchange="Price()">
-										Standard
-									</p>
-									<p>
-										<input id="PriceUnitPremium" type="radio" name="services" value="premium" onchange="Price()">
-										Premium
-									</p>
-									<p>
-										<input id="PriceUnitExcelium" type="radio" name="services" value="other" onchange="Price()">
-										Excelium
-									</p>
-										<br>
-										Price of an elevator
-									<input id="PriceUnit" type="text" disabled>
-									<br>
-										Installation Cost
-									<input id="InstallationCost" type="text" disabled>
-									<br>
-										Total Cost 
-									<input id="TotalCost" type="text" disabled>
-										
-															
-							
-									
-
-								</fieldset>
-								
-								
-
-								<div class="row">
-									<div class="col-md-12">
-										<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> SUBMIT</button>
-									</div>
-								</div>
-
-
-
-							</form>
-
-						</div>
-						<!-- /FORM -->
-
-
-					</div>
+			<div class="container">
+				<select id="MySelect">
+					<option value="MySelect">---My Select---</option>
+					<option value="Residential">Residential</option>
+					<option value="Corporate">Corporate</option>
+					<option value="Commercial">Commercial</option>
+					<option value="Hybrid">Hybrid</option>
+				</select>
+				<br><br><br>
+				
+				<div id="Residential" class="building_type" >
+					<label for="NbApartments"> Number of Apartments*</label>
+					<input required type="number" value=""  name="" id="NbApartments">
+					<br>
+					<label for="NbFloors"> Number of Floors*</label>
+					<input required type="number" value=""  name="" id="NbFloors">
+					<br>
+					<label for="NbBasements"> Number of Basements*</label>
+					<input required type="number" value=""  name="" id="NbBasements">
 
 				</div>
+					
+				<div id="Commercial" class="building_type" >
+					<label for="NbDistBusiness"> Number of Distinct Businesses*</label>
+					<input required type="number" value=""  name="" id="NbDistBusiness">
+					<br>
+					<label for="NbFloors"> Number of Floors*</label>
+					<input required type="number" value=""  name="" id="NbFloors">
+					<br>
+					<label for="NbBasements"> Number of Basements*</label>
+					<input required type="number" value=""  name="" id="NbBasements">
+					<br>
+					<label for="NbParking"> Number of Parkings*</label>
+					<input required type="number" value=""  name="" id="NbParking">
+					<br>
+					<label for="Nbcages"> Number of Elevator Cages*</label>
+					<input required type="number" value=""  name="" id="Nbcages">
+					
+				</div>
+
+				<div id="Corporate" class="building_type" >
+					<label for="NbSeparateCom"> Number of Separate Companies*</label>
+					<input required type="number" value=""  name="" id="NbSeparateCom">
+					<br>
+					<label for="NbFloors"> Number of Floors*</label>
+					<input required type="number" value=""  name="" id="NbFloors">
+					<br>
+					<label for="NbBasements"> Number of Basements*</label>
+					<input required type="number" value=""  name="" id="NbBasements">
+					<br>
+					<label for="NbParking"> Number of Parkings*</label>
+					<input required type="number" value=""  name="" id="NbParking">
+					<br>
+					<label for="NbMaxPersons"> Number of Max Persons*</label>
+					<input required type="number" value=""  name="" id="NbMaxPersons">
+				</div>
+
+				<div id="Hybrid" class="building_type" >
+					<label for="NbDistBusiness"> Number of Distinct Businesses*</label>
+					<input required type="number" value=""  name="" id="NbDistBusiness">
+					<br>
+					<label for="NbFloors"> Number of Floors*</label>
+					<input required type="number" value=""  name="" id="NbFloors">
+					<br>
+					<label for="NbBasements"> Number of Basements*</label>
+					<input required type="number" value=""  name="" id="NbBasements">
+					<br>
+					<label for="NbParking"> Number of Parkings*</label>
+					<input required type="number" value=""  name="" id="NbParking">
+					<br>
+					<label for="NbMaxPersons"> Number of Max Persons*</label>
+					<input required type="number" value=""  name="" id="NbMaxPersons">
+					<br>
+					<label for="NbHoursAct"> Number of hours of Activity*</label>
+					<input required type="number" value=""  name=""  maxlength="24" id="NbHoursAct">
+				</div>
+
+			</div>
+
 			</section>
+
+
 			<!-- / -->
 
 
@@ -530,10 +429,28 @@
 					lng: -77.028333,
 					title: 'Company, Inc.'
 				});
+				
+				
+
 
 			});
 
 		</script>
 
+		<script>
+			/**
+				 Form
+				**/
+			$(document).ready(function () {
+				$('.building_type').hide(); 
+				$('#MySelect').change(function () {
+					
+					$('.building_type').hide();
+					$('#'+$(this).val()).show();
+				})
+			});
+
+				
+		</script>
 	</body>
 </html>
